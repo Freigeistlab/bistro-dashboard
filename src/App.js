@@ -4,7 +4,7 @@ import './App.css';
 import CurrentOrders from "./Components/CurrentOrders";
 import PreparedMeals from "./Components/OrderPreparation/PreparedMeals";
 
-const socket = new WebSocket("ws://192.168.0.4:443/");
+const socket = new WebSocket("ws://localhost:5678/");
 
 class App extends Component {
   render() {

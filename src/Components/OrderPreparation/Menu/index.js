@@ -15,15 +15,11 @@ export default class Menu extends React.Component {
   };
 
   onMealAdded(meal,amount){
-    for (let i=0;i<amount;i++){
-      if (this.props.socket){
-        this.props.socket.send("New Order " + meal);
-      }
-    }
+    this.props.socket.send(JSON.stringify({action: "prepare_order", meal, amount}));
   }
 
   render() {
-    const meals = ["Arrabiata", "Napoli", "Pesto"];
+    const meals = ["Spaghetti Arrabiata", "Spaghetti Napoli", "Spaghetti Pesto", "Spaghetti Bolognese"];
 
     return (<div style={containerStyles.listContainer}>
               <h2>Gerichte vorbereiten</h2>
