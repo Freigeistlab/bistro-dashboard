@@ -9,18 +9,23 @@ export default class CurrentOrders extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      orders: []
+      orders: [],
+      currentOrderIndex: 0
     };
 
     this.props.socket.onmessage = (message) => {
       if (message.data){
-        console.log("Message", message);
+        console.log("Message ", message, new Date().toISOString());
         let { orders }= this.state;
         const json_msg = JSON.parse(message.data);
-        //orders.push(json_msg.recipe);
-        /*this.setState({
-          orders
-        })*/
+        switch(json_msg.action){
+          case "new_order":
+            orders.push(json_msg.recipe);
+            this.setState({
+              orders
+            });
+            break;
+        }
       }
     }
   }
@@ -34,12 +39,12 @@ export default class CurrentOrders extends React.Component {
   }
 
   render() {
-
+    const { orders, currentOrderIndex } = this.state;
     return (<div style={containerStyles.listContainer}>
               <h2>Bestellungen</h2>
               <ul style={containerStyles.list}>
                 {
-                  this.state.orders.map((meal, index)=> <li style={mealStyle} key={index}><div style={{float: "left"}}>{meal}</div></li>)
+                  orders.slice(currentOrderIndex,orders.length).map((meal, index)=> <li style={mealStyle} key={index}><div style={{float: "left"}}>{meal}</div></li>)
                 }
               </ul>
             </div>);
