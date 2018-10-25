@@ -1,33 +1,53 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ToggleButton } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import styles from "./styles";
 
-export default class Ingredient extends React.Component {
+export default class Recipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: false
+      count: 1
     };
 
-    this.onSelect = this.onSelect.bind(this);
+    this.onMealAdded = this.onMealAdded.bind(this);
   }
 
   static propTypes = {
-    onIngredientSelected: PropTypes.func.isRequired,
+    onOrderAdded: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.number
   };
 
-  onSelect(){
+
+  decreaseCount = () => {
     this.setState({
-      selected: !this.state.selected
+      count: this.state.count-1
     });
-    this.props.onIngredientSelected(this.props.name, this.props.type);
+  };
+
+  increaseCount = () => {
+    this.setState({
+      count: this.state.count+1
+    });
+  };
+
+
+  onMealAdded(){
+    const name = this.props.name;
+    const count = this.state.count;
+    this.props.onOrderAdded(name, count);
   }
 
   render() {
-    return (<li style={{ height: 30 }}>
-                <ToggleButton value={this.props.key} style={{width: '100%', marginLeft: 0}} onClick={this.onSelect}>{this.props.name}</ToggleButton>
-            </li>);
+    return (<li style={{ height: 40, }}>
+      <div style={styles.name} >{this.props.name}</div>
+      <div style={{float: "right"}}>
+        <Button disabled={this.state.count===1} onClick={this.decreaseCount.bind(this)}>-</Button>
+        <div style={styles.count} >{this.state.count}</div>
+        <Button onClick={this.increaseCount.bind(this)}>+</Button>
+        <Button onClick={this.onMealAdded}>Hinzufügen</Button>
+      </div>
+    </li>);
   }
 }

@@ -1,4 +1,3 @@
-import {BLUE} from "./colors";
 
 const buttonStyles = {
   buttonBarBtn: {

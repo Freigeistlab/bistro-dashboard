@@ -13,36 +13,31 @@ export default class CurrentOrders extends React.Component {
       currentOrderIndex: 0
     };
 
-    //here we handle extra orders that were added (either via orderbird or the dashboard)
-    this.props.socket.onmessage = (message) => {
-      if (message.data){
-        console.log("Message ", message, new Date().toISOString());
-        let { orders, currentOrderIndex }= this.state;
-        const json_msg = JSON.parse(message.data);
-        switch(json_msg.action){
-          case "new_order":
-            const { name, realOrder } = json_msg;
-            orders.push({name, realOrder});
-            this.setState({
-              orders
-            });
-            break;
-          case "update":
-            const { recipe } = json_msg;
-            if (currentOrderIndex+1 < orders.length){
-              if (recipe === orders[currentOrderIndex+1].name){
-                this.setState({currentOrderIndex: currentOrderIndex+1})
-              }
-            } else {
-              this.setState({orders: []})
-            }
-            break;
-          case "clear_queue":
-            this.setState({orders: []})
-            break;
-        }
+  }
+
+  addOrder(json_msg){
+    let { orders, currentOrderIndex }= this.state;
+    const { name, realOrder } = json_msg;
+    orders.push({name, realOrder});
+    this.setState({
+      orders
+    });
+  }
+
+  nextOrder(json_msg){
+    let { orders, currentOrderIndex }= this.state;
+    const { recipe } = json_msg;
+    if (currentOrderIndex+1 < orders.length){
+      if (recipe === orders[currentOrderIndex+1].name){
+        this.setState({currentOrderIndex: currentOrderIndex+1})
       }
+    } else {
+      this.setState({orders: []})
     }
+  }
+
+  clearQueue(){
+    this.setState({orders: []})
   }
 
   async componentDidMount(){

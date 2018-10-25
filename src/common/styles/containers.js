@@ -1,6 +1,6 @@
 const containerStyles = {
   listContainer: {
-    display: "inline-block",
+    display: "inline-grid",
     marginRight: 30,
     flex:1
   },
@@ -8,8 +8,5 @@ const containerStyles = {
     listStyle:"none",
     padding: 0,
   },
-  buttonContainer: {
-
-  }
 };
 export default containerStyles;

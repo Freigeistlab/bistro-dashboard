@@ -28,6 +28,10 @@ export async function nextOrder() {
   return queue.data;
 }
 
+export async function nextIngredients() {
+  const response = await API.get("/next_ingredient");
+  console.log(response.data);
+}
 
 export async function clearQueue() {
   const response = await API.get("/clear_queue");
