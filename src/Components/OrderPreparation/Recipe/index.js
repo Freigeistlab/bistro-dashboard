@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ToggleButton } from "react-bootstrap";
 
-export default class Ingredient extends React.Component {
+export default class Recipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
