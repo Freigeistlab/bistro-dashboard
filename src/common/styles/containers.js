@@ -7,7 +7,9 @@ const containerStyles = {
   list: {
     listStyle:"none",
     padding: 0,
-    flex: 1
+  },
+  buttonContainer: {
+
   }
 };
 export default containerStyles;

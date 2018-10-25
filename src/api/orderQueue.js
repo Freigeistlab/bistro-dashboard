@@ -6,8 +6,13 @@ const API = axios.create({
 
 export async function getQueuedOrders() {
   const queue = await API.get("/orders");
-  console.log("queue ", queue.data.order_names);
-  return queue.data.order_names;
+  console.log("queue ", queue.data.orders);
+  return queue.data.orders;
+}
+
+export async function getRecipes() {
+  const response = await API.get("/recipes");
+  return response.data;
 }
 
 export async function addOrderToPrepare() {
@@ -17,3 +22,15 @@ export async function addOrderToPrepare() {
   const queue = await API.post("/order");
   return queue.data;
 }
+
+export async function nextOrder() {
+  const queue = await API.get("/next_order");
+  return queue.data;
+}
+
+
+export async function clearQueue() {
+  const response = await API.get("/clear_queue");
+  console.log(response);
+}
+
