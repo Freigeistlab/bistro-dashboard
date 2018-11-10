@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Menu from "./Components/OrderPreparation/Menu/index";
 import './App.css';
-import CurrentOrders from "./Components/CurrentOrders";
+import OrderQueue from "./Components/CurrentOrders";
 import PreparedMeals from "./Components/OrderPreparation/PreparedMeals";
 import ButtonBar from "./Components/ButtonBar";
 import CurrentRecipe from "./Components/CurrentRecipe";
@@ -29,6 +29,7 @@ class App extends Component {
             break;
           case "next_order":
             this.currentOrders.current.nextOrder(json_msg);
+            this.currentRecipe.current.nextIngredient(json_msg);
             break;
           case "clear_queue":
             this.currentOrders.current.clearQueue();
@@ -46,7 +47,7 @@ class App extends Component {
         <ButtonBar/>
         <div id="top_container">
           <Menu socket={socket}/>
-          <CurrentOrders socket={socket} ref={this.currentOrders}/>
+          <OrderQueue socket={socket} ref={this.currentOrders}/>
           <CurrentRecipe socket={socket} ref={this.currentRecipe}/>
           <PreparedMeals socket={socket}/>
 

@@ -4,7 +4,7 @@ import { getQueuedOrders } from "../../api/orderQueue";
 
 const mealStyle = {height: 30};
 
-export default class CurrentOrders extends React.Component {
+export default class OrderQueue extends React.Component {
 
   constructor(props){
     super(props);
@@ -16,7 +16,7 @@ export default class CurrentOrders extends React.Component {
   }
 
   addOrder(json_msg){
-    let { orders, currentOrderIndex }= this.state;
+    let { orders }= this.state;
     const { name, realOrder } = json_msg;
     orders.push({name, realOrder});
     this.setState({
@@ -32,7 +32,7 @@ export default class CurrentOrders extends React.Component {
         this.setState({currentOrderIndex: currentOrderIndex+1})
       }
     } else {
-      this.setState({orders: []})
+      this.setState({orders: [], currentOrderIndex: 0});
     }
   }
 
