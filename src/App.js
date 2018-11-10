@@ -36,6 +36,9 @@ class App extends Component {
             break;
           case "next_ingredient":
             this.currentRecipe.current.nextIngredient(json_msg);
+          case "init":
+            //currently we only need the current ingredients as we request the order queue separately
+            this.currentRecipe.current.nextIngredient(json_msg);
         }
       }
     }
