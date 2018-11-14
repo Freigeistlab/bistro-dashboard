@@ -16,7 +16,7 @@ export default class CurrentRecipe extends React.Component {
   }
 
   nextIngredient(json_msg){
-    console.log("Next ingredient")
+    console.log("Next ingredient");
     const { recipe, ingredients } = json_msg;
     let inUse = [];
     let finished = [];

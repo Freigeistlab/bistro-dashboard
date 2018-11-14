@@ -5,6 +5,7 @@ import OrderQueue from "./Components/CurrentOrders";
 import PreparedMeals from "./Components/OrderPreparation/PreparedMeals";
 import ButtonBar from "./Components/ButtonBar";
 import CurrentRecipe from "./Components/CurrentRecipe";
+import SystemStatus from "./Components/SystemStatus";
 
 const socket = new WebSocket("ws://localhost:5678/");
 
@@ -53,7 +54,7 @@ class App extends Component {
           <OrderQueue socket={socket} ref={this.currentOrders}/>
           <CurrentRecipe socket={socket} ref={this.currentRecipe}/>
           <PreparedMeals socket={socket}/>
-
+          <SystemStatus/>
         </div>
       </div>
     );
