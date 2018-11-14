@@ -39,6 +39,15 @@ export default class CurrentRecipe extends React.Component {
     });
   }
 
+  clearRecipe(){
+    this.setState({
+      inUse:[],
+      waiting: [],
+      finished: [],
+      recipe: ""
+    })
+  }
+
   render() {
     const { inUse, waiting, finished, recipe } = this.state;
     return (<div style={containerStyles.listContainer}>

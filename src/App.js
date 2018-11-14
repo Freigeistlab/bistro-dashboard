@@ -34,6 +34,7 @@ class App extends Component {
             break;
           case "clear_queue":
             this.currentOrders.current.clearQueue();
+            this.currentRecipe.current.clearRecipe();
             break;
           case "next_ingredient":
             this.currentRecipe.current.nextIngredient(json_msg);
