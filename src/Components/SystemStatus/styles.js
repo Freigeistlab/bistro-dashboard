@@ -13,6 +13,16 @@ export const styles = {
     marginRight: 5
   },
   dotInactive: {
-    backgroundColor: "red"
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    backgroundColor: "red",
+    float: "left",
+    marginTop: 10,
+    marginBottom: 10,
+    marginRight: 5
+  },
+  raspberryStatus: {
+    height: 20, float: "left"
   }
 };

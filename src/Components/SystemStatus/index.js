@@ -13,7 +13,7 @@ export default class SystemStatus extends React.Component {
       raspberry2Running: false,
     };
 
-    setInterval(this.ping.bind(this), 1000);
+    setInterval(this.ping.bind(this), 3000);
   }
 
   ping(){
@@ -32,7 +32,7 @@ export default class SystemStatus extends React.Component {
         }
       })
       .catch((error) => {
-        console.error('network error: ' + error)
+        console.error('network error: ' + error);
         this.setState({
           raspberry1Running: false,
         });
@@ -44,12 +44,12 @@ export default class SystemStatus extends React.Component {
       <h2>Status</h2>
 
       <div style={{alignItems: "center"}}>
-        <span style={this.state.raspberry1Running ? styles.dot : [styles.dot, styles.dotInactive]}></span>
-        <h4 style={{height: 20, float: "left"}}>Raspberry1</h4>
+        <span style={this.state.raspberry1Running ? styles.dot : styles.dotInactive}></span>
+        <h4 style={styles.raspberryStatus}>Raspberry1</h4>
       </div>
       <div>
-        <span style={this.state.raspberry2Running ? styles.dot : [styles.dot, styles.dotInactive]}></span>
-        <h4 style={{height: 20}}>Raspberry2</h4>
+        <span style={this.state.raspberry2Running ? styles.dot : styles.dotInactive}></span>
+        <h4 style={styles.raspberryStatus}>Raspberry2</h4>
       </div>
     </div>);
   }
