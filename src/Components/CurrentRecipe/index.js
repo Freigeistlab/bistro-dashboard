@@ -53,22 +53,22 @@ export default class CurrentRecipe extends React.Component {
     return (<div style={containerStyles.listContainer}>
               <h2>Aktuelle Zubereitung</h2>
               <h3>{recipe}</h3>
-              <h3>Aktuelle Zutat</h3>
+              <h4>Aktuelle Zutat</h4>
               <ul style={containerStyles.list}>
                 {
-                  inUse.map((ingredient) => <li><div>{ingredient}</div></li>)
+                  inUse.map((ingredient) => <li><div><b>{ingredient}</b></div></li>)
                 }
               </ul>
-              <h3>Nächste Zutaten</h3>
+              <h4>Nächste Zutaten</h4>
               <ul style={containerStyles.list}>
                 {
                   waiting.map((ingredient) => <li><div>{ingredient}</div></li>)
                 }
               </ul>
-              <h3>Abgearbeitete Zutaten</h3>
+              <h4>Abgearbeitete Zutaten</h4>
               <ul style={containerStyles.list}>
                 {
-                  finished.map((ingredient) => <li><div>{ingredient}</div></li>)
+                  finished.map((ingredient) => <li><div><i>{ingredient}</i></div></li>)
                 }
               </ul>
             </div>);

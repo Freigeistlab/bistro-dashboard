@@ -54,7 +54,7 @@ class App extends Component {
           <Menu socket={socket}/>
           <OrderQueue socket={socket} ref={this.currentOrders}/>
           <CurrentRecipe socket={socket} ref={this.currentRecipe}/>
-          <PreparedMeals socket={socket}/>
+          {/*<PreparedMeals socket={socket}/>*/}
           <SystemStatus/>
         </div>
       </div>
