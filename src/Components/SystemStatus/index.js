@@ -26,18 +26,22 @@ export default class SystemStatus extends React.Component {
       this.setState({
         serverRunning: false,
       });
+      setTimeout(function(){
+        window.location.reload();
+      }, 5000);
     });
-
-    if (response.status === 200) {
-      this.setState({
-        serverRunning: true,
-      });
-      console.log('success')
-    } else {
-      this.setState({
-        serverRunning: false,
-      });
-      console.warn('error')
+    if (response){
+      if (response.status === 200) {
+        this.setState({
+          serverRunning: true,
+        });
+        console.log('success')
+      } else {
+        this.setState({
+          serverRunning: false,
+        });
+        console.warn('error')
+      }
     }
   }
 

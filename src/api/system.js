@@ -1,7 +1,6 @@
 import API from "./instance";
 
 export async function restartServer() {
-  console.log("restarting")
   await API.get("/restart");
 }
 
