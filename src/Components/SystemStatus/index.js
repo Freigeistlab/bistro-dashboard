@@ -1,42 +1,44 @@
 import React from "react";
 import containerStyles from "../../common/styles/containers";
-import { API } from "../../api/orderQueue";
+import {API, nextOrder} from "../../api/orderQueue";
 import "../../index.css";
 import {styles} from "./styles";
+import buttonStyles from "../../common/styles/buttons";
+import {Button} from "react-bootstrap";
+import {ping, restartServer} from "../../api/system";
 
 export default class SystemStatus extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      raspberry1Running: false,
-      raspberry2Running: false,
+      serverRunning: false,
+      projectionRunning: false,
+      backProjectionRunning: false,
     };
 
     setInterval(this.ping.bind(this), 3000);
   }
 
-  ping(){
-    API.get('')
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState({
-            raspberry1Running: true,
-          });
-          console.log('success')
-        } else {
-          this.setState({
-            raspberry1Running: false,
-          });
-          console.warn('error')
-        }
-      })
-      .catch((error) => {
-        console.error('network error: ' + error);
-        this.setState({
-          raspberry1Running: false,
-        });
-      })
+  async ping(){
+    const response = await ping().catch((error) => {
+      console.error('network error: ' + error);
+      this.setState({
+        serverRunning: false,
+      });
+    });
+
+    if (response.status === 200) {
+      this.setState({
+        serverRunning: true,
+      });
+      console.log('success')
+    } else {
+      this.setState({
+        serverRunning: false,
+      });
+      console.warn('error')
+    }
   }
 
   render() {
@@ -44,12 +46,17 @@ export default class SystemStatus extends React.Component {
       <h2>Status</h2>
 
       <div style={{alignItems: "center"}}>
-        <span style={this.state.raspberry1Running ? styles.dot : styles.dotInactive}></span>
-        <h4 style={styles.raspberryStatus}>Raspberry1</h4>
+        <span style={this.state.serverRunning ? styles.dot : styles.dotInactive}></span>
+        <h4 style={styles.raspberryStatus}>Server</h4>
+        <Button bsStyle="warning" onClick={restartServer} style={buttonStyles.buttonBarBtn}>Neustart</Button>
       </div>
       <div>
-        <span style={this.state.raspberry2Running ? styles.dot : styles.dotInactive}></span>
-        <h4 style={styles.raspberryStatus}>Raspberry2</h4>
+        <span style={this.state.projectionRunning ? styles.dot : styles.dotInactive}></span>
+        <h4 style={styles.raspberryStatus}>Projektion</h4>
+      </div>
+      <div>
+        <span style={this.state.projectionRunning ? styles.dot : styles.dotInactive}></span>
+        <h4 style={styles.raspberryStatus}>Rück Projektion</h4>
       </div>
     </div>);
   }
