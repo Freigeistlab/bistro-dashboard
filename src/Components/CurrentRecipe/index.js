@@ -52,7 +52,7 @@ export default class CurrentRecipe extends React.Component {
     const { inUse, waiting, finished, recipe } = this.state;
     return (<div style={containerStyles.listContainer}>
               <h2>Aktuelle Zubereitung</h2>
-              <h3>{recipe}</h3>
+              <h3>{recipe.replace("_", " ")}</h3>
               <h4>Aktuelle Zutat</h4>
               <ul style={containerStyles.list}>
                 {

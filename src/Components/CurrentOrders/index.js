@@ -89,14 +89,14 @@ export default class OrderQueue extends React.Component {
               <ul style={containerStyles.list}>
                 {
                   orders.length!==0?
-                    orders.slice(currentRealOrderIndex,orders.length).map((order, index)=> <li style={mealStyle} key={index}><div style={{float: "left"}}>{order}</div></li>)
+                    orders.slice(currentRealOrderIndex,orders.length).map((order, index)=> <li style={mealStyle} key={index}><div style={{float: "left"}}>{order.replace("_", " ")}</div></li>)
                   :
                   <div/>
 
                 }
                 {
                   mockOrders.length!==0?
-                    mockOrders.slice(currentMockOrderIndex,mockOrders.length).map((order, index)=> <li style={mealStyle} key={index}><div style={{float: "left"}}>{order + " (vorbereiten)"}</div></li>)
+                    mockOrders.slice(currentMockOrderIndex,mockOrders.length).map((order, index)=> <li style={mealStyle} key={index}><div style={{float: "left"}}>{order.replace("_", " ") + " (vorbereiten)"}</div></li>)
                     :
                     <div/>
                 }

@@ -41,7 +41,7 @@ export default class Recipe extends React.Component {
 
   render() {
     return (<li style={{ height: 40, }}>
-      <div style={styles.name} >{this.props.name}</div>
+      <div style={styles.name} >{this.props.name.replace("_", " ")}</div>
       <div style={{float: "right"}}>
         <Button disabled={this.state.count===1} onClick={this.decreaseCount.bind(this)}>-</Button>
         <div style={styles.count} >{this.state.count}</div>
