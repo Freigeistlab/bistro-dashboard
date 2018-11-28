@@ -38,16 +38,18 @@ class App extends Component {
             break;
           case "next_ingredient":
             this.currentRecipe.current.nextIngredient(json_msg);
-            break
+            break;
           case "init":
             //currently we only need the current ingredients as we request the order queue separately
             this.currentRecipe.current.nextIngredient(json_msg);
-            break
+            break;
           case "restart":
             console.log("received restart")
             setTimeout(function() {
               window.location.reload();
             }, 5000);
+            break;
+          default:
             break;
         }
       }
@@ -60,10 +62,10 @@ class App extends Component {
         <ButtonBar/>
         <div id="top_container">
           <Menu socket={socket}/>
-          <OrderQueue socket={socket} ref={this.currentOrders}/>
-          <CurrentRecipe socket={socket} ref={this.currentRecipe}/>
+          <OrderQueue ref={this.currentOrders}/>
+          <CurrentRecipe ref={this.currentRecipe}/>
           {/*<PreparedMeals socket={socket}/>*/}
-          <SystemStatus/>
+          <SystemStatus socket={socket}/>
         </div>
       </div>
     );

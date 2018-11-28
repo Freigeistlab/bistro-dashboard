@@ -5,7 +5,7 @@ import "../../index.css";
 import {styles} from "./styles";
 import buttonStyles from "../../common/styles/buttons";
 import {Button} from "react-bootstrap";
-import {ping, restartServer} from "../../api/system";
+import {ping, restartServer, refreshFrontProjection, refreshBackProjection} from "../../api/system";
 
 export default class SystemStatus extends React.Component {
 
@@ -18,6 +18,7 @@ export default class SystemStatus extends React.Component {
     };
 
     setInterval(this.ping.bind(this), 3000);
+    this.refreshProjections = this.refreshProjections.bind(this);
   }
 
   async ping(){
@@ -45,6 +46,10 @@ export default class SystemStatus extends React.Component {
     }
   }
 
+  refreshProjections(){
+    this.props.socket.send(JSON.stringify({action: "refresh"}));
+  }
+
   render() {
     return (<div style={containerStyles.listContainer}>
       <h2>Status</h2>
@@ -55,12 +60,12 @@ export default class SystemStatus extends React.Component {
         <Button bsStyle="warning" onClick={restartServer} style={buttonStyles.buttonBarBtn}>Neustart</Button>
       </div>
       <div>
-        <span style={this.state.projectionRunning ? styles.dot : styles.dotInactive}></span>
         <h4 style={styles.raspberryStatus}>Projektion</h4>
+        <Button bsStyle="warning" onClick={this.refreshProjections} style={buttonStyles.buttonBarBtn}>Refresh</Button>
       </div>
       <div>
-        <span style={this.state.projectionRunning ? styles.dot : styles.dotInactive}></span>
         <h4 style={styles.raspberryStatus}>Rück Projektion</h4>
+        <Button bsStyle="warning" onClick={this.refreshProjections} style={buttonStyles.buttonBarBtn}>Refresh</Button>
       </div>
     </div>);
   }
