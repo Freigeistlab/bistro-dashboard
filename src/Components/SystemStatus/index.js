@@ -53,18 +53,13 @@ export default class SystemStatus extends React.Component {
   render() {
     return (<div style={containerStyles.listContainer}>
       <h2>Status</h2>
-
-      <div style={{alignItems: "center"}}>
+        <div>
         <span style={this.state.serverRunning ? styles.dot : styles.dotInactive}></span>
         <h4 style={styles.raspberryStatus}>Server</h4>
         <Button bsStyle="warning" onClick={restartServer} style={buttonStyles.buttonBarBtn}>Neustart</Button>
       </div>
       <div>
-        <h4 style={styles.raspberryStatus}>Projektion</h4>
-        <Button bsStyle="warning" onClick={this.refreshProjections} style={buttonStyles.buttonBarBtn}>Refresh</Button>
-      </div>
-      <div>
-        <h4 style={styles.raspberryStatus}>Rück Projektion</h4>
+        <h4 style={styles.raspberryStatus}>Projektionen</h4>
         <Button bsStyle="warning" onClick={this.refreshProjections} style={buttonStyles.buttonBarBtn}>Refresh</Button>
       </div>
     </div>);
