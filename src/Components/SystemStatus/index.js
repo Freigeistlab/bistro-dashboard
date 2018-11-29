@@ -15,6 +15,7 @@ export default class SystemStatus extends React.Component {
       serverRunning: false,
       projectionRunning: false,
       backProjectionRunning: false,
+      serverNotReachableCount: 0
     };
 
     setInterval(this.ping.bind(this), 3000);
@@ -33,13 +34,20 @@ export default class SystemStatus extends React.Component {
     });
     if (response){
       if (response.status === 200) {
+
+        if (this.state.serverNotReachableCount===3){
+          window.location.reload();
+        }
+
         this.setState({
           serverRunning: true,
+          serverNotReachableCount: 0
         });
         console.log('success')
       } else {
         this.setState({
           serverRunning: false,
+          serverNotReachableCount: this.state.serverNotReachableCount+1
         });
         console.warn('error')
       }
