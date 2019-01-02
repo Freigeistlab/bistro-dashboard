@@ -7,7 +7,7 @@ import ButtonBar from "./Components/ButtonBar";
 import CurrentRecipe from "./Components/CurrentRecipe";
 import SystemStatus from "./Components/SystemStatus";
 
-const socket = new WebSocket("ws://localhost:5678/");
+const socket = new WebSocket("ws://192.168.42.133:5678/");
 
 class App extends Component {
 
