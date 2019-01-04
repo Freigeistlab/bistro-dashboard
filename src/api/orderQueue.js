@@ -11,10 +11,8 @@ export async function getRecipes() {
   return response.data;
 }
 
+//TODO: implement this function. currently we add orders via websocket request which isn't best practice
 export async function addOrderToPrepare() {
-  const data = {
-
-  };
   const queue = await API.post("/order");
   return queue.data;
 }

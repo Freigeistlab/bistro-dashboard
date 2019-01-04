@@ -24,5 +24,9 @@ export const styles = {
   },
   raspberryStatus: {
     height: 20, float: "left"
+  },
+  button: {
+    float: "right",
+    marginLeft: 5
   }
 };

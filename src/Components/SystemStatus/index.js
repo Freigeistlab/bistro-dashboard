@@ -64,11 +64,15 @@ export default class SystemStatus extends React.Component {
         <div>
         <span style={this.state.serverRunning ? styles.dot : styles.dotInactive}></span>
         <h4 style={styles.raspberryStatus}>Server</h4>
-        <Button bsStyle="warning" onClick={restartServer} style={buttonStyles.buttonBarBtn}>Neustart</Button>
+        <span style={styles.button}>
+          <Button bsStyle="warning" onClick={restartServer} style={buttonStyles.buttonBarBtn}>Neustart</Button>
+        </span>
       </div>
       <div>
         <h4 style={styles.raspberryStatus}>Projektionen</h4>
-        <Button bsStyle="warning" onClick={this.refreshProjections} style={buttonStyles.buttonBarBtn}>Refresh</Button>
+        <span style={styles.button}>
+          <Button bsStyle="warning" onClick={this.refreshProjections} style={buttonStyles.buttonBarBtn}>Neu laden</Button>
+        </span>
       </div>
     </div>);
   }

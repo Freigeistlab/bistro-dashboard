@@ -5,7 +5,8 @@ const buttonStyles = {
     fontSize: 16,
     color: "white",
     borderRadius: 4,
-    alignSelf: "right"
+    alignSelf: "right",
+    marginBottom: 5,
   }
 };
 export default buttonStyles;
