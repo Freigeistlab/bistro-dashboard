@@ -6,8 +6,9 @@ import PreparedMeals from "./Components/OrderPreparation/PreparedMeals";
 import ButtonBar from "./Components/ButtonBar";
 import CurrentRecipe from "./Components/CurrentRecipe";
 import SystemStatus from "./Components/SystemStatus";
+import {webSocketURI} from "./constants/constants";
 
-const socket = new WebSocket("ws://192.168.42.133:5678/");
+const socket = new WebSocket(webSocketURI);
 
 class App extends Component {
 
